@@ -2,7 +2,7 @@ package org.smart4j.chapter02.Utils;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class CastUtil  {
+public final class CastUtil  {
     /**
      * 转为String类型
      */

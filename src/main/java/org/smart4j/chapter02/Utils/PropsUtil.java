@@ -8,6 +8,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * 属性加载工具类
+ * @author Garwen
+ * @date 2019-11-28
+ */
+
 public final class PropsUtil {
     private static final Logger LOGGER=LoggerFactory.getLogger(PropsUtil.class);
     /**
