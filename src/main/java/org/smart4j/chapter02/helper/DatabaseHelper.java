@@ -23,24 +23,32 @@ import java.util.Properties;
 
 /**
  * 数据库操作助手类
- *
  * @author Garwen
  * @date 2019-11-28
  */
 public class DatabaseHelper {
     private static final Logger LOGGER= LoggerFactory.getLogger(DatabaseHelper.class);
-    private static final QueryRunner QUERY_RUNNER = new QueryRunner();
-    private static final ThreadLocal<Connection> CONNECTION_HOLDER = new ThreadLocal<Connection>();
-    private static final BasicDataSource DATA_SOURCE = new BasicDataSource();
+    private static final QueryRunner QUERY_RUNNER;
+    private static final ThreadLocal<Connection> CONNECTION_HOLDER;
+    private static final BasicDataSource DATA_SOURCE ;
 
     static{
-        Properties conf = PropsUtil.loadProps("config.properties");
+        QUERY_RUNNER = new QueryRunner();
+        CONNECTION_HOLDER = new ThreadLocal<>();
+//        Properties conf = PropsUtil.loadProps("config.properties");
+        Properties conf = new Properties();
+        conf.setProperty("jdbc.driver", "com.mysql.cj.jdbc.Driver");
+        conf.setProperty("jdbc.url", "jdbc:mysql://104.199.203.155:3306/demo");
+        conf.setProperty("jdbc.username", "smart4j");
+        conf.setProperty("jdbc.password", "Ztw6020485!");
+
         String driver=PropsUtil.getString(conf, "jdbc.driver");
         String url=PropsUtil.getString(conf, "jdbc.url");
         String username=PropsUtil.getString(conf, "jdbc.username");
         String password=PropsUtil.getString(conf, "jdbc.password");
 
         //add apache common dbcp pool
+        DATA_SOURCE = new BasicDataSource();
         DATA_SOURCE.setDriverClassName(driver);
         DATA_SOURCE.setUrl(url);
         DATA_SOURCE.setUsername(username);

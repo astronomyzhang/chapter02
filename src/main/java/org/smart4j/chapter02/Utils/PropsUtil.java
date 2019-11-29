@@ -20,14 +20,12 @@ public final class PropsUtil {
      * load properties
      */
     public static Properties loadProps(String fileName) {
-        Properties props = null;
-        InputStream is = null;
+        Properties props = new Properties();
+        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);
         try {
-            is = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);
             if (is == null) {
                 throw new FileNotFoundException(fileName + "file is not found.");
             }
-            props = new Properties();
             props.load(is);
         } catch (IOException e) {
             LOGGER.error("load properties file failure", e);
