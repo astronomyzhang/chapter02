@@ -3,12 +3,20 @@ package org.smart4j.chapter02.test;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.smart4j.chapter02.helper.DatabaseHelper;
 import org.smart4j.chapter02.model.Customer;
 import org.smart4j.chapter02.service.CustomerService;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+/**
+ *Unit Test
+ *@author Garwen
+ *@date 2019-11-29 10:17
+ */
 
 public class CustomerServiceTest {
     private final CustomerService customerService;
@@ -18,8 +26,9 @@ public class CustomerServiceTest {
     }
 
     @Before
-    public void init(){
-        //TODO initialize database
+    public void init() throws IOException {
+        String file = "sql/customer_init.sql";
+        DatabaseHelper.executeSqlfile(file);
     }
 
     @Test
@@ -47,7 +56,7 @@ public class CustomerServiceTest {
 
     @Test
     public void updateCustomerTest(){
-        long id=1;
+        long id=2;
         Map<String, Object> fieldmap = new HashMap<>();
         fieldmap.put("contact", "Eric");
         boolean result = customerService.updateCustomer(id, fieldmap);
