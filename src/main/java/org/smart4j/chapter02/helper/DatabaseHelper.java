@@ -35,7 +35,7 @@ public class DatabaseHelper {
     static{
         QUERY_RUNNER = new QueryRunner();
         CONNECTION_HOLDER = new ThreadLocal<>();
-        Properties conf = PropsUtil.loadProps("config.properties");
+        Properties conf = PropsUtil.loadProps("/conf/config.properties");
 
         String driver=PropsUtil.getString(conf, "jdbc.driver");
         String url=PropsUtil.getString(conf, "jdbc.url");
