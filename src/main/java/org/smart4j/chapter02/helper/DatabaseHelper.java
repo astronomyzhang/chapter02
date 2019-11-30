@@ -35,12 +35,7 @@ public class DatabaseHelper {
     static{
         QUERY_RUNNER = new QueryRunner();
         CONNECTION_HOLDER = new ThreadLocal<>();
-//        Properties conf = PropsUtil.loadProps("config.properties");
-        Properties conf = new Properties();
-        conf.setProperty("jdbc.driver", "com.mysql.cj.jdbc.Driver");
-        conf.setProperty("jdbc.url", "jdbc:mysql://104.199.203.155:3306/demo");
-        conf.setProperty("jdbc.username", "smart4j");
-        conf.setProperty("jdbc.password", "Ztw6020485!");
+        Properties conf = PropsUtil.loadProps("config.properties");
 
         String driver=PropsUtil.getString(conf, "jdbc.driver");
         String url=PropsUtil.getString(conf, "jdbc.url");

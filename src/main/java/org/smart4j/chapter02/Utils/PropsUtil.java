@@ -21,8 +21,9 @@ public final class PropsUtil {
      */
     public static Properties loadProps(String fileName) {
         Properties props = new Properties();
-        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);
+        InputStream is = null;
         try {
+            is = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);
             if (is == null) {
                 throw new FileNotFoundException(fileName + "file is not found.");
             }
